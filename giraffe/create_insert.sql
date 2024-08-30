@@ -29,7 +29,7 @@ describe students;
 
 DROP Table students;
 
-insert INTO students VALUES (2, "Ton", "Mio", "PU");
+insert INTO students VALUES (3, "Carren", "JS", "Softuni");
 
 insert INTO students (name, major) VALUES ('Ben', 'Geology');
 
