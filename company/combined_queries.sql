@@ -22,3 +22,35 @@ INSERT INTO branch VALUES (4, "Buffalo", NULL, NULL);
 SELECT employee.first_name, employee.last_name, branch.branch_name
 FROM employee
     RIGHT JOIN branch on employee.emp_id = branch.mngr_id;
+
+SELECT first_name, last_name
+FROM employee
+WHERE
+    emp_id IN (
+        SELECT emp_id
+        FROM works_with
+        WHERE
+            total_sales > 25000
+    );
+
+SELECT client_name
+FROM client
+WHERE
+    branch_id = (
+        SELECT branch_id
+        FROM branch
+        WHERE
+            mngr_id = 102 -- LIMIT 1 (sequring from more than one result when using =)
+    );
+
+SELECT first_name
+FROM employee
+WHERE
+    sex = 'M'
+    AND emp_id IN (
+        SELECT emp_id
+        FROM works_with
+        WHERE
+            client_id = 403
+            AND total_sales > 10000
+    );
