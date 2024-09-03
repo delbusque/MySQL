@@ -24,3 +24,10 @@ SELECT AVG(salary) FROM employee;
 SELECT COUNT(sex), sex FROM employee GROUP BY sex;
 
 SELECT SUM(total_sales), emp_id FROM works_with GROUP BY emp_id;
+
+SELECT * FROM branch_supplier WHERE supplier_name LIKE '%lab%';
+
+SELECT * FROM client WHERE client_name LIKE '_ede_';
+
+SELECT * FROM employee WHERE birth_day LIKE '_____11___';
+-- SELECT * FROM employee WHERE birth_day LIKE '____-11-%';
