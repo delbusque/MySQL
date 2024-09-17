@@ -19,9 +19,9 @@ FROM client;
 
 INSERT INTO branch VALUES (4, "Buffalo", NULL, NULL);
 
-SELECT employee.first_name, employee.last_name, branch.branch_name
-FROM employee
-    RIGHT JOIN branch on employee.emp_id = branch.mngr_id;
+SELECT empl.first_name, empl.last_name, br.branch_name
+FROM employee empl
+    INNER JOIN branch AS br on empl.emp_id = br.mngr_id;
 
 SELECT first_name, last_name
 FROM employee
