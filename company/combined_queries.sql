@@ -19,10 +19,6 @@ FROM client;
 
 INSERT INTO branch VALUES (4, "Buffalo", NULL, NULL);
 
-SELECT empl.first_name, empl.last_name, br.branch_name
-FROM employee empl
-    INNER JOIN branch AS br on empl.emp_id = br.mngr_id;
-
 SELECT first_name, last_name
 FROM employee
 WHERE
@@ -54,3 +50,43 @@ WHERE
             client_id = 403
             AND total_sales > 10000
     );
+
+-- INNER JOINS
+SELECT empl.first_name, empl.last_name, br.branch_name
+FROM employee empl
+    INNER JOIN branch AS br ON empl.emp_id = br.mngr_id;
+
+-- OUTER JOINS
+SELECT *
+FROM employee empl
+    RIGHT JOIN branch AS br ON empl.emp_id = br.mngr_id;
+
+-- SELF JOINS
+SELECT
+    empl_1.emp_id,
+    empl_1.first_name,
+    empl_1.last_name,
+    empl_2.emp_id AS santa_id,
+    empl_2.first_name AS santa_first_name,
+    empl_2.last_name AS santa_last_name
+FROM
+    employee empl_1
+    LEFT JOIN employee empl_2 ON empl_1.emp_id + 1 = empl_2.emp_id;
+
+SELECT * FROM client;
+
+SELECT * FROM works_with;
+
+SELECT employee.first_name, employee.last_name, branch.branch_name, works_with.client_id, works_with.total_sales
+FROM
+    employee
+    INNER JOIN branch ON employee.emp_id = branch.mngr_id
+    INNER JOIN works_with ON employee.emp_id = works_with.emp_id;
+
+SELECT employee.emp_id, employee.first_name, employee.last_name, branch.branch_name
+FROM employee
+    INNER JOIN branch ON employee.branch_id = branch.branch_id;
+
+SELECT * FROM branch;
+
+SELECT * FROM employee;
