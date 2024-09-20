@@ -1,4 +1,35 @@
 -- Active: 1724997650692@@127.0.0.1@3306@company
+
+SELECT
+    first_name,
+    last_name,
+    birth_day,
+    'old-man' AS label
+FROM employee
+WHERE
+    birth_day < '1970-01-01'
+    AND sex = 'm'
+UNION
+SELECT
+    first_name,
+    last_name,
+    birth_day,
+    'old-lady' AS label
+FROM employee
+WHERE
+    birth_day < '1970-01-01'
+    AND sex = 'f'
+UNION
+SELECT
+    first_name,
+    last_name,
+    salary,
+    'highly paid' AS label
+FROM employee
+WHERE
+    salary > 100000
+ORDER BY first_name, last_name;
+
 SELECT first_name AS 'first_column', birth_day AS 'second_column'
 FROM employee
 UNION
@@ -83,9 +114,12 @@ FROM
     INNER JOIN branch ON employee.emp_id = branch.mngr_id
     INNER JOIN works_with ON employee.emp_id = works_with.emp_id;
 
-SELECT employee.emp_id, employee.first_name, employee.last_name, branch.branch_name
-FROM employee
-    INNER JOIN branch ON employee.branch_id = branch.branch_id;
+-- SELECT employee.emp_id, employee.first_name, employee.last_name, branch.branch_name
+SELECT *
+FROM
+    employee
+    INNER JOIN works_with ON employee.emp_id = works_with.emp_id
+    INNER JOIN client on client.client_id = works_with.client_id;
 
 SELECT * FROM branch;
 
